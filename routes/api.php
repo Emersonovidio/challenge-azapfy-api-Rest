@@ -21,18 +21,11 @@ Route::prefix('v1')->group(function () {
   Route::post('/register', [RegisterController::class, 'store']);
   Route::post('/signin', [AuthController::class, 'login'])->name('login');
 
-  
-  Route::middleware(['jwt.auth'])->group(function () {
-    /**
-     * Invoices
-     */
-    Route::middleware('auth-sanctum')->prefix('/invoices')->group(function () {
-      Route::get('/', [InvoiceController::class, 'index']);
-      Route::get('/{id}', [InvoiceController::class, 'show']);
-      Route::post('/', [InvoiceController::class, 'store']);
-      Route::put('/{id}', [InvoiceController::class, 'update']);
-      Route::delete('/{id}', [InvoiceController::class, 'destroy']);
-      
-    });
+  Route::prefix('/invoices')->group(function () {
+    Route::get('/', [InvoiceController::class, 'index']);
+    Route::get('/{id}', [InvoiceController::class, 'show']);
+    Route::post('/', [InvoiceController::class, 'store']);
+    Route::put('/{id}', [InvoiceController::class, 'update']);
+    Route::delete('/{id}', [InvoiceController::class, 'destroy']);
   });
 });
