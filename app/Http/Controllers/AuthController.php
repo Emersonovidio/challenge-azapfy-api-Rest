@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 
 use App\Http\Requests\Auth\LoginRequest;
@@ -16,10 +16,8 @@ class AuthController extends Controller
 
 
         return response()->json([
-            'user' => [
-                'name' => $user->fullName,
-                'email' => $user->email
-            ]
-        ]);
+            'user' => $user->name,
+            'message' => 'Usuário logado com sucesso.'
+        ], 200);
     }
 }

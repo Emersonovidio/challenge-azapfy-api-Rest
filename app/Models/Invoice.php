@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\Invoice;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User\User;
-
-
+use App\Models\User;
 
 class Invoices extends Model
 {

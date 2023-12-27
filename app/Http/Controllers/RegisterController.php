@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
  use Illuminate\Support\Facades\Auth;
  use Illuminate\Support\Facades\Hash;
- use Illuminate\Foundation\Auth\User;
+ use App\Models\User;
 
 
 
@@ -15,9 +15,9 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique',
-            'password' => 'required|min:8'
+            'name' => 'string|unique:users',
+            'email' => 'string|email|unique:users',
+            'password' => 'string'
         ]);
         
         $newUser =  User::create(([
@@ -31,6 +31,6 @@ class RegisterController extends Controller
         return response()->json([
             'user' => $newUser,
             'message' => 'Usuário criado com sucesso.'
-        ], 201);
+        ], 200);
     }
 }

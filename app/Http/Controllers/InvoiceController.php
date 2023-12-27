@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Invoice;
+namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Invoice\Invoices;
+use App\Models\Invoices;
 use App\Http\Resources\Api\Dashboard\Invoice\InvoicesResource;
 
 
@@ -13,9 +13,9 @@ class InvoiceController extends Controller
 {
     private $invoice;
 
-    public function __construct(Invoices $invoices)
+    public function __construct(Invoices $invoice)
     {
-        $this->invoice = $invoices;
+        $this->invoice = $invoice;
     }
 
 
