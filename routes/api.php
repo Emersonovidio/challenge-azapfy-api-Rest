@@ -19,18 +19,19 @@ use App\Http\Controllers\InvoiceController;
 Route::prefix('v1')->group(function () {
 
   Route::post('/register', [RegisterController::class, 'store']);
-  Route::post('/login', [AuthController::class, 'login']);
+  Route::post('/signin', [AuthController::class, 'login'])->name('login');
 
   
   Route::middleware(['jwt.auth'])->group(function () {
     /**
      * Invoices
      */
-    Route::prefix('/invoices')->group(function () {
+    Route::middleware('auth-sanctum')->prefix('/invoices')->group(function () {
       Route::get('/', [InvoiceController::class, 'index']);
+      Route::get('/{id}', [InvoiceController::class, 'show']);
       Route::post('/', [InvoiceController::class, 'store']);
-      Route::put('/{uuid}', [InvoiceController::class, 'update']);
-      Route::delete('/{uuid}', [InvoiceController::class, 'destroy']);
+      Route::put('/{id}', [InvoiceController::class, 'update']);
+      Route::delete('/{id}', [InvoiceController::class, 'destroy']);
       
     });
   });

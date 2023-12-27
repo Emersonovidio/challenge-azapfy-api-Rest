@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Invoices extends Model
+class Invoice extends Authenticatable
 {
-
     use HasFactory, Notifiable;
 
     protected $table = 'invoices';
 
     protected $fillable = [
         'id',
+        'user_id',
         'amount',
         'issuance_date',
         'cnpj_sender',

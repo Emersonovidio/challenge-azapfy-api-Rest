@@ -26,11 +26,9 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
-        Auth::login($newUser);
-
         return response()->json([
             'user' => $newUser,
-            'message' => 'Usuário criado com sucesso.'
+            'message' => 'Novo usuário criado com sucesso.'
         ], 200);
     }
 }
