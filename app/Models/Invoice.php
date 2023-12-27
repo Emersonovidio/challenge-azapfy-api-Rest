@@ -2,16 +2,17 @@
 
 namespace App\Models\Invoice;
 
-use App\Traits\Actived\ActiveTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-use YourAppRocks\EloquentUuid\Traits\HasUuid;
 use App\Models\User\User;
 
-use OwenIt\Auditing\Auditable as AuditableTrait;
-use OwenIt\Auditing\Contracts\Auditable as AuditableInterface;
+
 
 class Invoices extends Model
 {
+
+    use HasFactory, Notifiable;
 
     protected $table = 'invoices';
 

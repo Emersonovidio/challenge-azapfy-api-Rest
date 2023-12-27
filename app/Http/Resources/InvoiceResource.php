@@ -4,12 +4,13 @@ namespace App\Http\Resources\Api\Dashboard\Invoice;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InvoicesResource extends JsonResource
+class InvoiceResource extends JsonResource
 {
 
     public function toArray($request)
     {
         return [
+            'uuid' => $this->uuid,
             'amount' => $this->amount,
             'issuance_date' => $this->issuance_date,
             'cnpj_sender' => $this->cnpj_sender,

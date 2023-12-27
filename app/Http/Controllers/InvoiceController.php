@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Dashboard\Invoice;
+namespace App\Http\Controllers\Invoice;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Invoice\Invoice;
+use App\Models\Invoice\Invoices;
 use App\Http\Resources\Api\Dashboard\Invoice\InvoicesResource;
 
 
@@ -13,8 +13,7 @@ class InvoiceController extends Controller
 {
     private $invoice;
 
-
-    public function __construct(Invoice $invoices)
+    public function __construct(Invoices $invoices)
     {
         $this->invoice = $invoices;
     }
@@ -27,7 +26,5 @@ class InvoiceController extends Controller
         $results = $query->paginate(10);
 
         return InvoicesResource::collection($results);
-
-
     }
 }
