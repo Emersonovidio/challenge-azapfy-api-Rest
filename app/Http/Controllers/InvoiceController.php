@@ -8,7 +8,7 @@ use App\Models\Invoice;
 use Illuminate\Notifications\Notification;
 use App\Http\Resources\InvoicesResource;
 use App\Http\Requests\Auth\InvoiceRequest;
-
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -40,10 +40,13 @@ class InvoiceController extends Controller
         
         try {
 
+            $now = now();
+
+
              $newInvoice =  Invoice::create(([
                 'user_id' => $request->user_id,
                 'amount' => $request->amount,
-                'issuance_date' => $request->issuance_date,
+                'issuance_date' => $now,
                 'cnpj_sender' => $request->cnpj_sender,
                 'name_sender' => $request->name_sender,
                 'cnpj_carrier' => $request->cnpj_carrier,
@@ -51,7 +54,7 @@ class InvoiceController extends Controller
             ]));
             
             return response()->json([
-                'user' => $newInvoice,
+                'invoice' => $newInvoice->id,
                 'message' => 'Nova Nota fiscal criada com sucesso.'
             ], 200);
         } catch (\Exception $e) {

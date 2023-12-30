@@ -12,9 +12,9 @@ class InvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|string|max:9',
-            'amount' =>  'required|numeric|min:0|not_in:0',
-            'issuance_date' => 'required|date',
+            'number_id' => 'required|string|unique|digits:9',
+            'amount' =>  'required|numeric|not_in:0',
+            'issuance_date' => 'required|date||before_or_equal:today',
             'cnpj_sender' => 'required|string|max:14',
             'name_sender' => 'required|string|max:100',
             'cnpj_carrier' => 'required|string|max:14',
@@ -26,6 +26,7 @@ class InvoiceRequest extends FormRequest
     public function messages()
     {
         return [
+            'number_id' => 'O campo number_id deve ter 9 digitos',
             'amount' => 'O campo amount precisa ser maior que 0.',
             'issuance_date' => 'O campo issuance_date não pode ser uma data futura.',
             'cnpj_sender' => 'O cnpj_sender precisa ser um CNPJ válido.',
